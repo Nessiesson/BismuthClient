@@ -18,23 +18,11 @@ import java.util.List;
 
 public class LiteModBismuthClient implements Tickable, Configurable, PluginChannelListener {
 	public static Config config = new Config();
-	public KeyBinding sort = new KeyBinding("Sort", Keyboard.KEY_N, this.getName());
+	public static KeyBinding sort = new KeyBinding("Sort", Keyboard.KEY_N, "@NAME@");
 
 	@Override
 	public void init(File configPath) {
-		LiteLoader.getInput().registerKeyBinding(this.sort);
-	}
-
-	@Override
-	public void onTick(Minecraft minecraft, float partialTicks, boolean inGame, boolean clock) {
-		if (!inGame) {
-			return;
-		}
-	}
-
-	@Override
-	public void onCustomPayload(String channel, PacketBuffer data) {
-		System.out.println(channel);
+		LiteLoader.getInput().registerKeyBinding(sort);
 	}
 
 	@Override
@@ -57,8 +45,9 @@ public class LiteModBismuthClient implements Tickable, Configurable, PluginChann
 		return GuiConfig.class;
 	}
 
-	@Override
-	public void upgradeSettings(String version, File configPath, File oldConfigPath) {
-		// noop
-	}
+	// @formatter:off
+	@Override public void onCustomPayload(String channel, PacketBuffer data) {}
+	@Override public void upgradeSettings(String version, File configPath, File oldConfigPath) {}
+	@Override public void onTick(Minecraft mc, float partialTicks, boolean inGame, boolean clock) {}
+	// @formatter:on
 }
