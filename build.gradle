@@ -1,0 +1,62 @@
+buildscript {
+	repositories {
+		jcenter()
+		maven { url = "https://files.minecraftforge.net/maven" }
+		maven { url = "https://repo.spongepowered.org/maven" }
+	}
+	dependencies {
+		classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
+		classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
+	}
+}
+
+apply plugin: "net.minecraftforge.gradle.liteloader"
+apply plugin: "org.spongepowered.mixin"
+
+version = "1.0.3"
+
+def mcVersion
+if(!project.hasProperty("mcVersion")) {
+	mcVersion = "1.12.2"
+} else{
+	mcVersion = project.getProperty("mcVersion")
+}
+println mcVersion
+
+def modName = "BismuthClient".toString()
+def modId = modName.toLowerCase()
+group = "si.bismuth.$modId"
+
+minecraft {
+	version = mcVersion
+	mappings = "stable_39"
+	runDir = "run"
+	makeObfSourceJar = false
+
+	replace "@VERSION@", project.version
+	replace "@NAME@", modName
+}
+
+mixin {
+	defaultObfuscationEnv notch
+	add sourceSets.main, "mixins.${modId}.refmap.json"
+}
+
+litemod.json {
+	author = "nessie".toString()
+	name = modName
+	displayName = modName
+	mcversion = mcVersion
+	description = "A very."
+	mixinConfigs += "mixins.${modId}.json".toString()
+}
+
+jar {
+	classifier = ""
+	baseName = "$modName-$mcVersion"
+	from litemod.outputs
+}
+
+runClient {
+	jvmArgs "-Dmixin.debug=true"
+}

@@ -1,0 +1,6 @@
+{
+	"required": true,
+	"package": "si.bismuth.bismuthclient.mixins",
+	"refmap": "mixins.bismuthclient.refmap.json",
+	"mixins": []
+}
