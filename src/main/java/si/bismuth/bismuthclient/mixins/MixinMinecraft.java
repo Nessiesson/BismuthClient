@@ -31,8 +31,11 @@ public abstract class MixinMinecraft {
 		}
 
 		final PacketBuffer buf = new PacketBuffer(Unpooled.buffer());
-		if (i == LiteModBismuthClient.sort.getKeyCode()) {
-			buf.writeBoolean(GuiScreen.isCtrlKeyDown());
+		if (i == LiteModBismuthClient.sortInventory.getKeyCode()) {
+			buf.writeBoolean(true);
+			ClientPluginChannelsClient.sendMessage("Bis|sort", buf, PluginChannels.ChannelPolicy.DISPATCH_IF_REGISTERED);
+		} else if (i == LiteModBismuthClient.sortContainer.getKeyCode()) {
+			buf.writeBoolean(false);
 			ClientPluginChannelsClient.sendMessage("Bis|sort", buf, PluginChannels.ChannelPolicy.DISPATCH_IF_REGISTERED);
 		} else if (i == LiteModBismuthClient.getinv.getKeyCode()) {
 			buf.writeBlockPos(this.objectMouseOver.getBlockPos());

@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 public class ParticleShowItems extends ParticleSmokeNormal {
 	protected ParticleShowItems(World world, double x, double y, double z, double dX, double dY, double dZ, float scale) {
 		super(world, x, y, z, dX, dY, dZ, scale);
-		this.particleMaxAge *= 10;
+		this.particleMaxAge *= 7;
 	}
 
 	@Override

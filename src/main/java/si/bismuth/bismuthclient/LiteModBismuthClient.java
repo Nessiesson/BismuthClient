@@ -26,7 +26,8 @@ import java.util.Random;
 public class LiteModBismuthClient implements Tickable, Configurable, PluginChannelListener {
 	public static Config config = new Config();
 	final public static Random rng = new Random();
-	public static KeyBinding sort = new KeyBinding("Sort", Keyboard.KEY_NONE, "@NAME@");
+	public static KeyBinding sortInventory = new KeyBinding("SortInventory", Keyboard.KEY_NONE, "@NAME@");
+	public static KeyBinding sortContainer = new KeyBinding("SortContainer", Keyboard.KEY_NONE, "@NAME@");
 	public static KeyBinding getinv = new KeyBinding("GetInventory", Keyboard.KEY_NONE, "@NAME@");
 	public static KeyBinding finditem = new KeyBinding("FindItem", Keyboard.KEY_NONE, "@NAME@");
 	public static Logger log;
@@ -34,7 +35,7 @@ public class LiteModBismuthClient implements Tickable, Configurable, PluginChann
 	@Override
 	public void init(File configPath) {
 		log = LogManager.getLogger();
-		LiteLoader.getInput().registerKeyBinding(sort);
+		LiteLoader.getInput().registerKeyBinding(sortInventory);
 		LiteLoader.getInput().registerKeyBinding(getinv);
 		LiteLoader.getInput().registerKeyBinding(finditem);
 	}
