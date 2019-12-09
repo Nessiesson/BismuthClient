@@ -36,6 +36,7 @@ public class LiteModBismuthClient implements Tickable, Configurable, PluginChann
 	public void init(File configPath) {
 		log = LogManager.getLogger();
 		LiteLoader.getInput().registerKeyBinding(sortInventory);
+		LiteLoader.getInput().registerKeyBinding(sortContainer);
 		LiteLoader.getInput().registerKeyBinding(getinv);
 		LiteLoader.getInput().registerKeyBinding(finditem);
 	}
