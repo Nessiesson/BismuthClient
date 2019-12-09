@@ -3,6 +3,7 @@
 	"package": "si.bismuth.bismuthclient.mixins",
 	"refmap": "mixins.bismuthclient.refmap.json",
 	"mixins": [
+		"IMixinGuiContainer",
 		"MixinMinecraft"
 	]
 }
