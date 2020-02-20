@@ -33,13 +33,13 @@ public abstract class MixinMinecraft {
 		final PacketBuffer buf = new PacketBuffer(Unpooled.buffer());
 		if (i == LiteModBismuthClient.sortInventory.getKeyCode()) {
 			buf.writeBoolean(true);
-			ClientPluginChannelsClient.sendMessage("Bis|sort", buf, PluginChannels.ChannelPolicy.DISPATCH_IF_REGISTERED);
+			this.sendPluginChannelMessage("Bis|sort", buf);
 		} else if (i == LiteModBismuthClient.sortContainer.getKeyCode()) {
 			buf.writeBoolean(false);
-			ClientPluginChannelsClient.sendMessage("Bis|sort", buf, PluginChannels.ChannelPolicy.DISPATCH_IF_REGISTERED);
+			this.sendPluginChannelMessage("Bis|sort", buf);
 		} else if (i == LiteModBismuthClient.getinv.getKeyCode()) {
 			buf.writeBlockPos(this.objectMouseOver.getBlockPos());
-			ClientPluginChannelsClient.sendMessage("Bis|getinventory", buf, PluginChannels.ChannelPolicy.DISPATCH_IF_REGISTERED);
+			this.sendPluginChannelMessage("Bis|getinventory", buf);
 		} else if (i == LiteModBismuthClient.finditem.getKeyCode()) {
 			final GuiScreen screen = Minecraft.getMinecraft().currentScreen;
 			if (screen instanceof GuiContainer) {
@@ -49,10 +49,14 @@ public abstract class MixinMinecraft {
 					final ItemStack stack = mouse.getStack();
 					if (!stack.isEmpty()) {
 						buf.writeItemStack(stack);
-						ClientPluginChannelsClient.sendMessage("Bis|searchforitem", buf, PluginChannels.ChannelPolicy.DISPATCH_IF_REGISTERED);
+						this.sendPluginChannelMessage("Bis|searchforitem", buf);
 					}
 				}
 			}
 		}
+	}
+
+	private boolean sendPluginChannelMessage(String channel, PacketBuffer data) {
+		return ClientPluginChannelsClient.sendMessage(channel, data, PluginChannels.ChannelPolicy.DISPATCH_IF_REGISTERED);
 	}
 }
