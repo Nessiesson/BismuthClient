@@ -4,6 +4,7 @@
 	"refmap": "mixins.bismuthclient.refmap.json",
 	"mixins": [
 		"IMixinGuiContainer",
+		"MixinBlockRelaxedPlacement",
 		"MixinMinecraft"
 	]
 }
