@@ -6,7 +6,8 @@
 		"IMixinGuiContainer",
 		"MixinBlockFenceGate",
 		"MixinBlockPumpkin",
-		"MixinMC111444",
-		"MixinMinecraft"
+		"MixinEntityPlayerSP",
+		"MixinMinecraft",
+		"MixinNetHandlerPlayServer"
 	]
 }
